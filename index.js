@@ -6,6 +6,7 @@ import { MongoClient } from "mongodb";
 import mongoose from "mongoose";
 
 dotenv.config();
+
 var app = express();
 const callbackUrl = process.env.CALLBACK_URL + "/callback/";
 const client = new MongoClient(process.env.MONGO_URL);
@@ -19,7 +20,7 @@ const isValidRepo = (repoStr) => {
   return repoStr.indexOf("/") > -1 && repoStr.split("/").length === 2;
 };
 
-app.post("/home/repo", async (req, res) => {
+app.post("/repo", async (req, res) => {
   const { repo, email } = req.body;
   if (!repo || !email) {
     res.status(400).send(`400 - Bad Request: repo and email are required`);
