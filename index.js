@@ -6,7 +6,6 @@ import { MongoClient } from "mongodb";
 import mongoose from "mongoose";
 
 dotenv.config();
-
 var app = express();
 const callbackUrl = process.env.CALLBACK_URL + "/callback/";
 const client = new MongoClient(process.env.MONGO_URL);
@@ -20,7 +19,7 @@ const isValidRepo = (repoStr) => {
   return repoStr.indexOf("/") > -1 && repoStr.split("/").length === 2;
 };
 
-app.post("/repo", async (req, res) => {
+app.post("/home/repo", async (req, res) => {
   const { repo, email } = req.body;
   if (!repo || !email) {
     res.status(400).send(`400 - Bad Request: repo and email are required`);
@@ -60,7 +59,7 @@ app.post("/repo", async (req, res) => {
   //     console.log(err);
   //   });
   try {
-    const database = client.db("Reclaim");
+    const database = client.db("reclaim_data");
     const usersDB = database.collection("users");
     // create a document to insert
     const doc = {
@@ -145,7 +144,7 @@ app.post("/callback/:id", async (req, res) => {
   const claims = { claims: reqBody.claims };
 
   try {
-    const database = client.db("Reclaim");
+    const database = client.db("reclaim_data");
     const userDB = database.collection("users");
     // create a filter for a movie to update
     const filter = { callback_id: callbackId };
@@ -189,7 +188,7 @@ app.post("/callback/:id", async (req, res) => {
 	"
   >
 	<h1>
-	  Submitted claim successfully! 
+	  claim successfully! 
 	</h1>
   </div>`);
 });
