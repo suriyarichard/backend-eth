@@ -17,7 +17,7 @@ app.use(cors());
 const reclaim = new Reclaim(callbackUrl);
 
 const isValidRepo = (repoStr) => {
-  return repoStr.indexOf("/") > -1 && repoStr.split("/").length === 2;
+  return repoStr.indexOf("/") > -1// && repoStr.split("/").length === 2;
 };
 
 app.post("/home/repo", async (req, res) => {
