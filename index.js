@@ -21,7 +21,11 @@ const isValidRepo = (repoStr) => {
 };
 
 app.post("/home/repo", async (req, res) => {
-  const { repo, email } = req.body;
+//   const { repo, email } = req.body;
+
+  let repo = req.body.repo
+  let email = req.body.email
+
   if (!repo || !email) {
     res.status(400).send(`400 - Bad Request: repo and email are required`);
     return;
