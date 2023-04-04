@@ -25,6 +25,7 @@ app.post("/home/repo", async (req, res) => {
 
   let repo = req.body.repo
   let email = req.body.email
+  console.log(repo,email,req.body,"sampl;e")
 
   if (!repo || !email) {
     res.status(400).send(`400 - Bad Request: repo and email are required`);
