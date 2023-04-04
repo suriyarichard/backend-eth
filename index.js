@@ -41,6 +41,7 @@ app.post("/home/repo", async (req, res) => {
   }
 
   const callbackId = "repo-" + generateUuid();
+  console.log(callbackId,"callback");
   const template = (
     await reclaim.connect("Github-contributor", [
       {
@@ -53,6 +54,7 @@ app.post("/home/repo", async (req, res) => {
   ).generateTemplate(callbackId);
   const url = template.url;
   const templateId = template.id;
+  console.log(url,templateId,"heelo");
   // mongoose
   //   .connect(process.env.MONGO_URL, {
   //     useNewUrlParser: true,
@@ -83,7 +85,7 @@ app.post("/home/repo", async (req, res) => {
     await client.close();
   }
 
-  res.json({ url, callbackId });
+  res.send(JSON.stringify({ url, callbackId }))
 });
 
 // app.get("/status/:callbackId", async (req, res) => {
